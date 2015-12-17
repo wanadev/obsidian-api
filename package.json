@@ -1,0 +1,33 @@
+{
+  "name": "wanadev-project-format",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "private": true,
+  "scripts": {
+    "test": "./node_modules/.bin/grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.wanadev.org:interne/wanadev-project-api.git"
+  },
+  "author": "Wanadev",
+  "license": "proprietary",
+  "dependencies": {
+    "abitbol": "^1.0.3",
+    "lodash": "^3.10.1",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "express": "^4.13.3",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-mocha-phantomjs": "^2.0.1",
+    "grunt-shell": "^1.1.2",
+    "pm2": "^0.15.10",
+    "serve-static": "^1.10.0"
+  }
+}
