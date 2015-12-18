@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: "WanadevProject"
+                        standalone: "wanadevApp"
                     }
                 }
             },

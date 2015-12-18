@@ -16,7 +16,8 @@
   "dependencies": {
     "abitbol": "^1.0.3",
     "lodash": "^3.10.1",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
