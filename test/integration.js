@@ -18,4 +18,13 @@ describe("Integration", function() {
         this.app.on("ready", done);
     });
 
+    it("can retrieve API's remote methods", function(done) {
+        var app = this.app;
+        this.app.on("ready", function() {
+            expect(app.method1).to.be.a("function");
+            expect(app.method2).to.be.a("function");
+            done();
+        });
+    });
+
 });

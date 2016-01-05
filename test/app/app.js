@@ -12,6 +12,6 @@ var Api = WanadevProjectApi.$extend({
 
 var api = new Api();
 
-//api.addApiMethod("method2", function() {});
+api.addApiMethod("method2", function() {});
 
 api.ready();
