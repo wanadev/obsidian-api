@@ -3,7 +3,7 @@
 var expect = require("expect.js");
 var helpers = require("../lib/helpers.js");
 
-describe("heleprs", function() {
+describe("helpers", function() {
 
     describe("parseUrlParams", function() {
 
