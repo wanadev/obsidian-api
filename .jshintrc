@@ -13,6 +13,7 @@
   "globals": {
     "describe": false,
     "it": false,
-    "before": false
+    "before": false,
+    "ImageData": false
   }
 }
