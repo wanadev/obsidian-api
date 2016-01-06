@@ -40,7 +40,7 @@ var MyApi = WanadevProjectApi.$extend({
     },
 
     asyncMethodUsingPromise: function(a, b) {
-        "@api";                                                   // allows to call this method from the integration side
+        "@api";
         var promise = sommeFunctionThatReturnsAPromise(a, b);
         return promise;                                           // by returning a promise, the API will wait for the promise
                                                                   // to be resolved and then return the result to the integration

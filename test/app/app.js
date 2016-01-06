@@ -49,6 +49,16 @@ var Api = WanadevProjectApi.$extend({
                 reject(new Error("TestError"));
             }, 1);
         });
+    },
+
+    sendMeAnEvent: function(eventName, param1, param2) {
+        "@api";
+        this.sendEvent(eventName, param1, param2);
+    },
+
+    echo: function(data) {
+        "@api";
+        return data;
     }
 });
 

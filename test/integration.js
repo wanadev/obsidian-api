@@ -107,4 +107,13 @@ describe("Integration", function() {
             });
     });
 
+    it("can register callback to events", function(done) {
+        this.app.on("hello", function(param1, param2) {
+            expect(param1).to.equal("world");
+            expect(param2).to.equal(42);
+            done();
+        });
+        this.app.sendMeAnEvent("hello", "world", 42);
+    });
+
 });
