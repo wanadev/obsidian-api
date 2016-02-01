@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+    - "stable"
+before_scripto:
+    - node node_modules/.bin/pm2 start -f test/app/server.js --name=obsidian-api-app &
+    - node node_modules/.bin/pm2 start -f test/inte/server.js --name=obsidian-api-inte &
+script: grunt jshint gen-test mocha_phantomjs

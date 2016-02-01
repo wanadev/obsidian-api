@@ -72,6 +72,8 @@ api.sendEvent("eventName", "param1", "param2");
 ## Integration-side example
 
 ```javascript
+var obsidianApp = require("obsidian-api/lib/integration");
+
 // Start the application
 var app = obsidianApp({
     htmlNode: "#integration-div",              // Query selector or HTMLElement that will be the parent of the iframe
