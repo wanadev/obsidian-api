@@ -1,5 +1,9 @@
 # Obsidian API
 
+[![Build Status](https://travis-ci.org/wanadev/obsidian-api.svg?branch=master)](https://travis-ci.org/wanadev/obsidian-api)
+[![NPM Version](http://img.shields.io/npm/v/obsidian-api.svg?style=flat)](https://www.npmjs.com/package/obsidian-api)
+[![License](http://img.shields.io/npm/l/obsidian-api.svg?style=flat)](https://github.com/wanadev/obsidian-api/blob/master/LICENSE)
+
 This module provides a way to implement integration API (to communicate between the integration page and the application iframe).
 
 Features:
