@@ -3,12 +3,12 @@
 var APP_URL = location.protocol + "//" + location.hostname + ":3011";
 
 var expect = require("expect.js");
-var wanadevApp = require("../lib/integration.js");
+var ObsidianApp = require("../lib/integration.js");
 
 describe("Integration", function() {
 
     before(function() {
-        this.app = wanadevApp({
+        this.app = ObsidianApp({
             htmlNode: "#target",
             appUrl: APP_URL
         });

@@ -1,9 +1,9 @@
 "use strict";
 
 var expect = require("expect.js");
-var WanadevProjectApi = require("../lib/WanadevProjectApi.js");
+var ObsidianApi = require("../lib/ObsidianApi.js");
 
-describe("WanadevProjectApi", function() {
+describe("ObsidianProjectApi", function() {
 
     describe("$getConfig", function() {
 
@@ -17,7 +17,7 @@ describe("WanadevProjectApi", function() {
         });
 
         it("can retreive config", function() {
-            expect(WanadevProjectApi.$getConfig()).to.eql(this.config);
+            expect(ObsidianApi.$getConfig()).to.eql(this.config);
         });
 
     });

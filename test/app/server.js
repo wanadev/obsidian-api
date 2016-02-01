@@ -9,5 +9,5 @@ var app = express();
 
 app.use("/", serveStatic(__dirname));
 
-console.log("Starting Wanadev Api Test Server [app] on 0.0.0.0:" + PORT);
+console.log("Starting Obsidian Api Test Server [app] on 0.0.0.0:" + PORT);
 app.listen(PORT);

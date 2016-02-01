@@ -1,4 +1,4 @@
-# Wanadev Project API
+# Obsidian API
 
 This module provides a way to implement integration API (to communicate between the integration page and the application iframe).
 
@@ -16,10 +16,10 @@ Features:
 ```javascript
 "use strict";
 
-var WanadevProjectApi = require("wanadev-project-api");
+var ObsidianApi = require("obsidian-api");
 
 
-var MyApi = WanadevProjectApi.$extend({
+var MyApi = ObsidianApi.$extend({
 
     simpleMethod: function(a, b) {
         "@api";                                                   // allows to call this method from the integration side
@@ -73,7 +73,7 @@ api.sendEvent("eventName", "param1", "param2");
 
 ```javascript
 // Start the application
-var app = wanadevApp({
+var app = obsidianApp({
     htmlNode: "#integration-div",              // Query selector or HTMLElement that will be the parent of the iframe
     appUrl: "http://example.com/",             // The URL of the application
     config: {}                                 // Optional config that will be passed to the application

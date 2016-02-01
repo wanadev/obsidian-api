@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: "wanadevApp"
+                        standalone: "obsidianApp"
                     }
                 }
             },
@@ -58,15 +58,15 @@ module.exports = function(grunt) {
                 command: [
                     "node node_modules/.bin/pm2 delete wanadev-project-api-app > /dev/null 2> /dev/null || echo -n",
                     "node node_modules/.bin/pm2 delete wanadev-project-api-inte > /dev/null 2> /dev/null || echo -n",
-                    "node node_modules/.bin/pm2 start -f test/app/server.js --name=wanadev-project-api-app --watch > /dev/null 2> /dev/null",
-                    "node node_modules/.bin/pm2 start -f test/inte/server.js --name=wanadev-project-api-inte --watch",
+                    "node node_modules/.bin/pm2 start -f test/app/server.js --name=obsidian-api-app --watch > /dev/null 2> /dev/null",
+                    "node node_modules/.bin/pm2 start -f test/inte/server.js --name=obsidian-api-inte --watch",
                     "sleep 1"
                 ].join(" && ")
             },
             serverStop: {
                 command: [
-                    "node node_modules/.bin/pm2 delete wanadev-project-api-app > /dev/null 2> /dev/null",
-                    "node node_modules/.bin/pm2 delete wanadev-project-api-inte"
+                    "node node_modules/.bin/pm2 delete obsidian-api-app > /dev/null 2> /dev/null",
+                    "node node_modules/.bin/pm2 delete obsidian-api-inte"
                 ].join(" && ")
             }
         }

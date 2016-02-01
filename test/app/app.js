@@ -1,9 +1,9 @@
 "use strict";
 
 var Q = require("q");
-var WanadevProjectApi = require("../../lib/WanadevProjectApi.js");
+var ObsidianApi = require("../../lib/ObsidianApi.js");
 
-var Api = WanadevProjectApi.$extend({
+var Api = ObsidianApi.$extend({
 
     method1: function() {
         "@api";
