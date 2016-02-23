@@ -25,7 +25,7 @@
     "grunt-browserify": "^4.0.1",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.11.3",
-    "grunt-mocha-phantomjs": "https://github.com/jdcataldo/grunt-mocha-phantomjs.git#greenkeeper-phantomjs-2.1.2",
+    "grunt-mocha-phantomjs": "^3.0.0",
     "grunt-shell": "^1.1.2",
     "pm2": "^0.15.10",
     "serve-static": "^1.10.0"
