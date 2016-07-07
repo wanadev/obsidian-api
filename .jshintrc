@@ -1,7 +1,7 @@
 {
   "futurehostile": true,
   "freeze": true,
-  "latedef": true,
+  "latedef": "nofunc",
   "noarg": true,
   "nocomma": true,
   "nonbsp": true,
