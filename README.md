@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/wanadev/obsidian-api.svg?branch=master)](https://travis-ci.org/wanadev/obsidian-api)
 [![NPM Version](http://img.shields.io/npm/v/obsidian-api.svg?style=flat)](https://www.npmjs.com/package/obsidian-api)
 [![License](http://img.shields.io/npm/l/obsidian-api.svg?style=flat)](https://github.com/wanadev/obsidian-api/blob/master/LICENSE)
+[![Dependencies](https://img.shields.io/david/wanadev/obsidian-api.svg?maxAge=2592000)]()
+[![Dev Dependencies](https://img.shields.io/david/dev/wanadev/obsidian-api.svg?maxAge=2592000)]()
+
 
 This module provides a way to implement integration API (to communicate between the integration page and the application iframe).
 
@@ -116,3 +119,10 @@ app.on("eventName", function(param1, param2) {
     // do stuff here...
 });
 ```
+
+
+## Changelog
+
+* **1.0.1:** Updates dependencies
+* **1.0.0:** First public release
+
