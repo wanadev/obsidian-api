@@ -116,4 +116,34 @@ describe("Integration", function() {
         this.app.sendMeAnEvent("hello", "world", 42);
     });
 
+    it("can transfer an Uint8Array", function() {
+        var array = new Uint8Array([0, 1, 2]);
+        return this.app.echo(array)
+            .then(function(a) {
+                expect(a).to.be.a(Uint8Array);
+                expect(a[0]).to.equal(0);
+                expect(a[1]).to.equal(1);
+                expect(a[2]).to.equal(2);
+            });
+    });
+
+    it("can transfer an Float", function() {
+        var array = new Float32Array([1.5]);
+        return this.app.echo(array)
+            .then(function(a) {
+                expect(a).to.be.a(Float32Array);
+                expect(a[0]).to.equal(1.5);
+            });
+    });
+
+    it("can transfer a Node.js Buffer", function() {
+        var buffer = new Buffer("FOOBAR");
+        return this.app.echo(buffer)
+            .then(function(buff) {
+                expect(buff).to.be.a(Buffer);
+                expect(buff.toString("ascii", 1, 3)).to.equal("OO");
+                expect(buff.readUInt8).to.be.a("function");
+            });
+    });
+
 });
