@@ -14,7 +14,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "abitbol": "^1.0.3",
-    "lodash": "^4.1.0",
+    "lodash": "^4.17.0",
     "q": "^1.4.1",
     "uuid": "^2.0.1"
   },
