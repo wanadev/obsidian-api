@@ -3,4 +3,7 @@ node_js:
     - "stable"
 before_script:
     - node node_modules/.bin/pm2 start -f test/app/server.js --name=obsidian-api-app && node node_modules/.bin/pm2 start -f test/inte/server.js --name=obsidian-api-inte &
-script: grunt jshint gen-test mocha_phantomjs
+script:
+    - grunt jshint gen-test mocha_phantomjs
+after_script:
+    - ./node_modules/.bin/pm2 kill
