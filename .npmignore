@@ -5,3 +5,4 @@ Gruntfile.js
 .jshintrc
 .tern-project
 .travis.yml
+yarn.lock
