@@ -123,6 +123,7 @@ app.on("eventName", function(param1, param2) {
 
 ## Changelog
 
+* **1.0.3:** Updates dependencies
 * **1.0.2:** Fixes Node.js Buffer transfer
 * **1.0.1:** Updates dependencies
 * **1.0.0:** First public release
