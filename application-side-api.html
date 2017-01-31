@@ -193,7 +193,9 @@ the <code>"@api"</code> <a href="https://wanadev.github.io/abitbol/using-abitbol
 
 <p>If an error is thrown in your method, it will be send to the integration-side
 caller:</p>
-<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
+
+    <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
         <span class="hljs-string">"@api"</span>;  <span class="hljs-comment">// &lt;- this annotation is required to make an API method</span>
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"NotImplementedError"</span>);  <span class="hljs-comment">// This error will be send</span>
                                                  <span class="hljs-comment">// to the integration</span>
@@ -235,14 +237,16 @@ parameters:</p>
 <p>To send an error to the callback, just pass the error as first parameter:</p>
 <pre><code class="hljs javascript">callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"FooError"</span>));</code></pre>
 
-<p>To send a result to the callback, pass <code>null</code> to the first callback and your
+<p>To send a result to the callback, pass <code>null</code> to the first parameter and your
 result as second parameter:</p>
 <pre><code class="hljs javascript">callback(<span class="hljs-literal">null</span>, <span class="hljs-string">"my result"</span>);</code></pre>
 
 <p>To use a callback for your API method, just add a <code>callback</code> parameter to your
 function, and call the callback that Obsidian API will give you with the right
 parameters as described above:</p>
-<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, callback</span>) </span>{
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
+
+    <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, callback</span>) </span>{
         <span class="hljs-string">"@api"</span>;
 
         someAsynchronousFunction(a, b, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, result</span>) </span>{
@@ -264,7 +268,9 @@ parameters as described above:</p>
 <p>To use promises in you API method, you only have to return your promise,
 Obsidian API will wait for the promise to be resolved (or rejected) to return
 the result to the integration-side caller:</p>
-<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
+
+    <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
         <span class="hljs-string">"@api"</span>;
 
         <span class="hljs-keyword">return</span> someAsynchronousFunctionThatReturnAPromise(a, b);
