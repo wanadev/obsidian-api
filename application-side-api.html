@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Application-Side API - Obsidian API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/obsidian-api-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/obsidian-api">Github</a></li><li><a href="https://www.npmjs.com/package/obsidian-api">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/obsidian-api-logo.svg"  alt="Obsidian API logo" />
+                    
+                    <span>Obsidian API</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" >Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="application-side-api.html" class="active">Application-Side API</a>
+                
+                    
+
+    
+    <ul class="toc">
+        
+            <li>
+                <a href="#implementing-an-obsidian-api-in-a-web-application">Implementing an Obsidian API In a Web Application</a>
+                
+            </li>
+        
+            <li>
+                <a href="#methods">Methods</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#adding-methods-to-the-api-class">Adding Methods To The API Class</a>
+                
+            </li>
+        
+            <li>
+                <a href="#adding-methods-dynamically-at-run-time">Adding Methods Dynamically At Run-Time</a>
+                
+            </li>
+        
+            <li>
+                <a href="#handling-asynchronous-calls">Handling Asynchronous Calls</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#using-node-like-callbacks">Using Node-Like Callbacks</a>
+                
+            </li>
+        
+            <li>
+                <a href="#using-promises">Using Promises</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#events">Events</a>
+                
+            </li>
+        
+            <li>
+                <a href="#configuration">Configuration</a>
+                
+            </li>
+        
+    </ul>
+
+
+
+                
+            </li>
+        
+            
+            <li>
+                <a href="integration-side-api.html" >Integration-Side API</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="example.html" >Example</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <h1 id="application-side-api">Application-Side API</h1>
+<h2 id="implementing-an-obsidian-api-in-a-web-application">Implementing an Obsidian API In a Web Application</h2>
+<p>To implement an Obsidian API in your application, you have to extend the
+<code>ObsidianApi</code> class proveded by the <code>obsidian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm package</a>:</p>
+<pre><code class="hljs javascript"><span class="hljs-comment">// Import the class (Node-like require if you are using Browserify, else you</span>
+<span class="hljs-comment">// have to include the obsidian-api.js script in your web page).</span>
+<span class="hljs-keyword">var</span> ObsidianApi = <span class="hljs-built_in">require</span>(<span class="hljs-string">"obsidian-api"</span>);
+
+<span class="hljs-comment">// Extending the ObsidianApi Class</span>
+<span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
+
+    <span class="hljs-comment">// ... API methods will go there</span>
+
+});</code></pre>
+
+<p><strong>NOTE:</strong> <code>ObsidianApi</code> is implemented using <a href="https://wanadev.github.io/abitbol/">Abitbol classes</a>.</p>
+<p>To start the API, we only have to instantiate its class:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> api = <span class="hljs-keyword">new</span> MyApi();</code></pre>
+
+<p>The last thing to do to make it work is to tell the integration that the
+application is fully loaded and ready to respond to API calls:</p>
+<pre><code class="hljs javascript">api.ready();</code></pre>
+
+<h2 id="methods">Methods</h2>
+<p>There is two way to add methods to the API:</p>
+<ul>
+<li>Implementing the method in our API class,</li>
+<li>Adding dynamically the method at run-time.</li>
+</ul>
+<h3 id="adding-methods-to-the-api-class">Adding Methods To The API Class</h3>
+<p>To implement an API method in our API class, we only have to add a method with
+the <code>"@api"</code> <a href="https://wanadev.github.io/abitbol/using-abitbol.html#annotations">annotation</a> to the class:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
+
+    <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+        <span class="hljs-string">"@api"</span>;
+        <span class="hljs-keyword">return</span> a + b;  <span class="hljs-comment">// this will be returned to the integration-side caller</span>
+    },
+
+    <span class="hljs-comment">// ...</span>
+
+});</code></pre>
+
+<p>If an error is thrown in your method, it will be send to the integration-side
+caller:</p>
+<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+        <span class="hljs-string">"@api"</span>;  <span class="hljs-comment">// &lt;- this annotation is required to make an API method</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"NotImplementedError"</span>);  <span class="hljs-comment">// This error will be send</span>
+                                                 <span class="hljs-comment">// to the integration</span>
+    },
+
+    <span class="hljs-comment">// ...</span>
+
+});</code></pre>
+
+<h3 id="adding-methods-dynamically-at-run-time">Adding Methods Dynamically At Run-Time</h3>
+<p>Obsidian API allows you to dynamically add new API methods at run-time:</p>
+<pre><code class="hljs javascript">api.addApiMethod(<span class="hljs-string">"myApiMethod"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a + b;
+});</code></pre>
+
+<h3 id="handling-asynchronous-calls">Handling Asynchronous Calls</h3>
+<p>There is two way to implement asynchronous API methods with Obsidian API:</p>
+<ul>
+<li>You can use <a href="http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/">Node-like callbacks</a>,</li>
+<li>or you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</li>
+</ul>
+<p><strong>NOTE:</strong> whatever you choose using a callback or promise in your API method,
+the integration-side caller will still be able to use both to get the method's
+return value: so if you use the "callback way" in your application-side method,
+the integration script can use a promise OR a callback depending of what its
+developer prefers.</p>
+<h4 id="using-node-like-callbacks">Using Node-Like Callbacks</h4>
+<p>What we call Node-like callbacks here are callbacks that can take up to two
+parameters:</p>
+<ul>
+<li>an <code>error</code> parameter first,</li>
+<li>and an optional <code>result</code> parameter next.</li>
+</ul>
+<p>So a classic Node-like callback looks like this:</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">error, result</span>) </span>{
+    <span class="hljs-comment">// ...</span>
+}</code></pre>
+
+<p>To send an error to the callback, just pass the error as first parameter:</p>
+<pre><code class="hljs javascript">callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"FooError"</span>));</code></pre>
+
+<p>To send a result to the callback, pass <code>null</code> to the first callback and your
+result as second parameter:</p>
+<pre><code class="hljs javascript">callback(<span class="hljs-literal">null</span>, <span class="hljs-string">"my result"</span>);</code></pre>
+
+<p>To use a callback for your API method, just add a <code>callback</code> parameter to your
+function, and call the callback that Obsidian API will give you with the right
+parameters as described above:</p>
+<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, callback</span>) </span>{
+        <span class="hljs-string">"@api"</span>;
+
+        someAsynchronousFunction(a, b, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, result</span>) </span>{
+            <span class="hljs-keyword">if</span> (error) {
+                callback(error);
+            } <span class="hljs-keyword">else</span> {
+                callback(<span class="hljs-literal">null</span>, result);  <span class="hljs-comment">// null as first param means "no error"</span>
+            }
+        });
+
+        <span class="hljs-comment">// Note that this method MUST retun NOTHING except "undefined"</span>
+    },
+
+    <span class="hljs-comment">// ...</span>
+
+});</code></pre>
+
+<h4 id="using-promises">Using Promises</h4>
+<p>To use promises in you API method, you only have to return your promise,
+Obsidian API will wait for the promise to be resolved (or rejected) to return
+the result to the integration-side caller:</p>
+<pre><code class="hljs javascript">myApiMethod: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+        <span class="hljs-string">"@api"</span>;
+
+        <span class="hljs-keyword">return</span> someAsynchronousFunctionThatReturnAPromise(a, b);
+    },
+
+    <span class="hljs-comment">// ...</span>
+
+});</code></pre>
+
+
+<h2 id="events">Events</h2>
+<p>TODO</p>
+<h2 id="configuration">Configuration</h2>
+<p>TODO</p>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2015-2017 Wanadev
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>

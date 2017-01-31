@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Obsidian API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/obsidian-api-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/obsidian-api">Github</a></li><li><a href="https://www.npmjs.com/package/obsidian-api">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/obsidian-api-logo.svg"  alt="Obsidian API logo" />
+                    
+                    <span>Obsidian API</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" class="active">Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="application-side-api.html" >Application-Side API</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="integration-side-api.html" >Integration-Side API</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="example.html" >Example</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <p><strong>Obsidian API</strong> is a library that allow you to implement an API between a web
+application running in an <code>iframe</code> and the web page that integrates it.</p>
+<p><strong>Obsidian API is composed of two parts:</strong></p>
+<ul>
+<li>An application-side Class (inside the <code>iframe</code>) that will be used to
+implement the API (methods that will be called remotely by the
+integration,...),</li>
+<li>and a integration-side script (outside the <code>iframe</code>) that will be used as
+a client for the API. This script is completely generic and can be used to
+connect to any web application that implements an Obsidian API.</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Remote method calls with return value (integration → app → integration),</li>
+<li>Provides callback-based events (app → integration),</li>
+<li>Allows the integration to send some configuration to the application before
+it was loaded,</li>
+<li>Allows to transfer of various types of objects (including <code>TypedArrays</code>,
+<code>Blob</code> and <code>Buffer</code>),</li>
+<li>Allows to use both node-like callbacks or promises for asynchronous calls.</li>
+</ul>
+<p><img src="./images/obsidian-api-schema.png" alt="Obsidian API Schema"></p>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2015-2017 Wanadev
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>
