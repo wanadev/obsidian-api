@@ -6,3 +6,5 @@ Gruntfile.js
 .tern-project
 .travis.yml
 yarn.lock
+doc
+doc.generated
