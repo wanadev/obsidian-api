@@ -282,9 +282,19 @@ the result to the integration-side caller:</p>
 
 
 <h2 id="events">Events</h2>
-<p>TODO</p>
+<p>The application-side API is can send events to the integration. This can be
+done with this simple line of code:</p>
+<pre><code class="hljs javascript">api.sendEvent(<span class="hljs-string">"eventName"</span>, <span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>, ...);</code></pre>
+
+
 <h2 id="configuration">Configuration</h2>
-<p>TODO</p>
+<p>The integration can send aconfiguration object to the application before it was
+initialized (parameters are passed through the <code>iframe</code> URL). To get the
+configuration, just call the <code>$getConfig()</code> static method of the <code>ObsidianApi</code>
+class:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> config = MyApi.$getConfig();  <span class="hljs-comment">// -&gt; {}</span></code></pre>
+
+
 
                 </article>
             </div>
