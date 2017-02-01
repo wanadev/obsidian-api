@@ -72,22 +72,70 @@
     <ul class="toc">
         
             <li>
-                <a href="#integrating-a-web-application-that-implements-obsidian-api">Integrating a Web Application That Implements Obsidian API</a>
+                <a href="#integrating-an-obsidian-web-application">Integrating an Obsidian Web Application</a>
                 
             </li>
         
             <li>
                 <a href="#listen-to-api-events">Listen to API Events</a>
                 
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#the-ready-event">The "ready" event</a>
+                
+            </li>
+        
+    </ul>
+
+                
             </li>
         
             <li>
                 <a href="#calling-api-methods">Calling API Methods</a>
                 
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#simple-method-call">Simple Method Call</a>
+                
+            </li>
+        
+            <li>
+                <a href="#getting-return-value-handling-errors">Getting Return Value / Handling Errors</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#using-callbacks">Using Callbacks</a>
+                
+            </li>
+        
+            <li>
+                <a href="#using-promises">Using Promises</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+    </ul>
+
+                
             </li>
         
             <li>
                 <a href="#sending-configuration-to-the-application">Sending Configuration To The Application</a>
+                
+            </li>
+        
+            <li>
+                <a href="#complete-example-">Complete Example:</a>
                 
             </li>
         
@@ -112,22 +160,125 @@
                 
                 <article>
                     <h1 id="integration-side-api">Integration-Side API</h1>
-<h2 id="integrating-a-web-application-that-implements-obsidian-api">Integrating a Web Application That Implements Obsidian API</h2>
-<p>TODO</p>
+<h2 id="integrating-an-obsidian-web-application">Integrating an Obsidian Web Application</h2>
+<p>Obsidian Applications are integrated in a web page using an <code>&lt;iframe/&gt;</code> that
+will be automatically created by the integration script.</p>
+<p>The first thing to do is to add an element in the page that will contain this
+iframe:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"obsidian-app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<p>The you have to include the integration script. If you are using
+<a href="http://browserify.org/">Browserify</a>, you can <code>require</code> the script from the <code>obsdian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm
+package</a>:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obsidianApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">"obsidian-api/lib/integration"</span>);</code></pre>
+
+<p>Else you can include the <a href="https://raw.githubusercontent.com/wanadev/obsidian-api/master/dist/integration.js">static build of the integration script</a>
+in your HTML page:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/integration.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<p><strong>NOTE:</strong> The integration script is the same whatever the Obsidian Application
+you integrates, it is completely generic: the application will push its API
+into your integration through this script.</p>
+<p>Finally the minimal code to start the application is the following:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> app = obsidianApp({
+    <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#obsidian-app"</span>,
+    <span class="hljs-attr">appUrl</span>: <span class="hljs-string">"http://myapp.example.com/"</span>
+});</code></pre>
+
+<p>Where:</p>
 <ul>
-<li>iframe → div</li>
-<li>require vs standalone lib</li>
-<li>Minimal code</li>
+<li><code>htmlNode</code> is the HTMLElement (or a query selector that match the element)
+where the <code>iframe</code> will be created,</li>
+<li><code>appUrl</code> is the root URL of the application.</li>
 </ul>
+<p>That's it.</p>
 <h2 id="listen-to-api-events">Listen to API Events</h2>
-<p>TODO</p>
-<ul>
-<li>ready</li>
-</ul>
+<p>Before we start talking about API methods, we have to speak about API Events.
+Obsidian Application are able to send event, with or without parameters, to the
+integration.</p>
+<p>Listening to those events is easy:</p>
+<pre><code class="hljs javascript">app.on(<span class="hljs-string">"eventName"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">param1, param2</span>) </span>{
+    <span class="hljs-comment">// ...</span>
+});</code></pre>
+
+<h3 id="the-ready-event">The "ready" event</h3>
+<p>Each Obsidian Application have there own set of events, <strong>but</strong> there is one
+standard event that <strong>every</strong> application will always call: the <code>ready</code> event.</p>
+<p>This event is called when the application is fully loaded and the API is ready
+to answer requests. So you will have to wait for this event before querying the
+API:</p>
+<pre><code class="hljs javascript">api.on(<span class="hljs-string">"ready"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// You can now call API methods here.</span>
+});</code></pre>
+
+
 <h2 id="calling-api-methods">Calling API Methods</h2>
-<p>TODO</p>
+<h3 id="simple-method-call">Simple Method Call</h3>
+<p>Calling an API method without getting any result nor handling errors is quite
+simple:</p>
+<pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>);</code></pre>
+
+<p><strong>NOTE:</strong> No methods should be called before receiving the <code>ready</code> event from
+the API.</p>
+<h3 id="getting-return-value-handling-errors">Getting Return Value / Handling Errors</h3>
+<p>Obsidian API method calls are asynchronous. So to get result or handle errors we
+have two choices:</p>
+<ul>
+<li>using <a href="http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/">Node-like callbacks</a>,</li>
+<li>or using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</li>
+</ul>
+<h4 id="using-callbacks">Using Callbacks</h4>
+<p>What we call Node-like callbacks here are callbacks that can take up to two
+parameters:</p>
+<ul>
+<li>an <code>error</code> parameter first,</li>
+<li>and an optional <code>result</code> parameter next.</li>
+</ul>
+<p>So a classic Node-like callback looks like this:</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">error, result</span>) </span>{
+    <span class="hljs-comment">// ...</span>
+}</code></pre>
+
+<p>To use callbacks to get the method result or handling errors, just pass the
+callback function after the method's parameters:</p>
+<pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param2"</span>, <span class="hljs-string">"param2"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, result</span>) </span>{
+    <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-comment">// Handle error here...</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Use the result here...</span>
+    }
+});</code></pre>
+
+<h4 id="using-promises">Using Promises</h4>
+<p>Obsidian API allows you to use promise instead of callback to handle the
+methods result and to handle results:</p>
+<pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
+        <span class="hljs-comment">// Use the result here...</span>
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+        <span class="hljs-comment">// Handle error here...</span>
+    })
+    .done();  <span class="hljs-comment">// Always finish the promise chain with .done()</span>
+              <span class="hljs-comment">// to let the uncaught error be thrown.</span></code></pre>
+
+
 <h2 id="sending-configuration-to-the-application">Sending Configuration To The Application</h2>
-<p>TODO</p>
+<p>Finally, you can send a configuration object to the application when you
+declare it:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> app = obsidianApp({
+    <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#obsidian-app"</span>,
+    <span class="hljs-attr">appUrl</span>: <span class="hljs-string">"http://myapp.example.com/"</span>,
+    <span class="hljs-attr">config</span>: {
+        <span class="hljs-attr">option</span>: <span class="hljs-string">"value"</span>,
+        <span class="hljs-attr">lang</span>: <span class="hljs-string">"fr_FR"</span>,
+        <span class="hljs-comment">// ...</span>
+    }
+});</code></pre>
+
+<h2 id="complete-example-">Complete Example:</h2>
+<p>You can find a more complete example that contain both application-side and
+integration-side code <a href="./example.html">here</a>.</p>
 
                 </article>
             </div>
