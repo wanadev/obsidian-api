@@ -51,11 +51,11 @@ var MyApi = ObsidianApi.$extend({
 var config = MyApi.$getConfig();
 
 
-// Instanciate the API
+// Instantiate the API
 var api = new MyApi();
 
 
-// Hot plug of new API methods (allows components to dynamicaly extend the API)
+// Hot plug of new API methods (allows components to dynamically extend the API)
 api.addApiMethod("myMethod", function() {});
 
 
@@ -112,7 +112,7 @@ app.on("eventName", function(param1, param2) {
 });
 ```
 
-__NOTE:__ If your are not using Browserify on the integration-side, you can
+__NOTE:__ If you are not using Browserify on the integration-side, you can
 also use the pre-built version of the integration script available here:
 
 * https://raw.githubusercontent.com/wanadev/obsidian-api/master/dist/integration.js
