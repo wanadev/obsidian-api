@@ -18,23 +18,23 @@ iframe:
 <div id="obsidian-app"></div>
 ```
 
-The you have to include the integration script. If you are using
-[Browserify][], you can `require` the script from the `obsdian-api` [npm
+Then you have to include the integration script. If you are using
+[Browserify][], you can `require` the script from the `obsidian-api` [npm
 package][npm-package]:
 
 ```javascript
 var obsidianApp = require("obsidian-api/lib/integration");
 ```
 
-Else you can include the [static build of the integration script][inte-script]
+Otherwise you can include the [static build of the integration script][inte-script]
 in your HTML page:
 
 ```html
 <script src="js/integration.js"></script>
 ```
 
-__NOTE:__ The integration script is the same whatever the Obsidian Application
-you integrates, it is completely generic: the application will push its API
+__NOTE:__ The integration script is the same for any Obsidian Application
+you integrate, it is completely generic: the application will push its API
 into your integration through this script.
 
 Finally the minimal code to start the application is the following:
@@ -48,17 +48,17 @@ var app = obsidianApp({
 
 Where:
 
-* `htmlNode` is the HTMLElement (or a query selector that match the element)
+* `htmlNode` is the HTMLElement (or a query selector that matches the element)
   where the `iframe` will be created,
 * `appUrl` is the root URL of the application.
 
 That's it.
 
 
-## Listen to API Events
+## Listening to API Events
 
 Before we start talking about API methods, we have to speak about API Events.
-Obsidian Application are able to send event, with or without parameters, to the
+Obsidian Application are able to send events, with or without parameters, to the
 integration.
 
 Listening to those events is easy:
@@ -71,7 +71,7 @@ app.on("eventName", function(param1, param2) {
 
 ### The "ready" event
 
-Each Obsidian Application have there own set of events, **but** there is one
+Each Obsidian Application has their own set of events, **but** there is one
 standard event that **every** application will always call: the `ready` event.
 
 This event is called when the application is fully loaded and the API is ready
@@ -139,8 +139,8 @@ api.myApiMethod("param2", "param2", function(error, result) {
 
 #### Using Promises
 
-Obsidian API allows you to use promise instead of callback to handle the
-methods result and to handle results:
+Obsidian API allows you to use promises instead of callbacks to handle the
+method's result and to handle errors:
 
 ```javascript
 api.myApiMethod("param1", "param2")
@@ -174,7 +174,7 @@ var app = obsidianApp({
 
 ## Complete Example:
 
-You can find a more complete example that contain both application-side and
+You can find a more complete example that contains both application-side and
 integration-side code [here](./example.html).
 
 
