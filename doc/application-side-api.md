@@ -9,10 +9,10 @@ menuOrder: 1
 ## Implementing an Obsidian API In a Web Application
 
 To implement an Obsidian API in your application, you have to extend the
-`ObsidianApi` class proveded by the `obsidian-api` [npm package][npm-package]:
+`ObsidianApi` class provided by the `obsidian-api` [npm package][npm-package]:
 
 ```javascript
-// Import the class (Node-like require if you are using Browserify, else you
+// Import the class (Node-like require if you are using Browserify, otherwise you
 // have to include the obsidian-api.js script in your web page).
 var ObsidianApi = require("obsidian-api");
 
@@ -41,10 +41,10 @@ api.ready();
 
 ## Methods
 
-There is two way to add methods to the API:
+There are two ways to add methods to the API:
 
 * Implementing the method in our API class,
-* Adding dynamically the method at run-time.
+* Dynamically adding the method at run-time.
 
 ### Adding Methods To The API Class
 
@@ -64,7 +64,7 @@ var MyApi = ObsidianApi.$extend({
 });
 ```
 
-If an error is thrown in your method, it will be send to the integration-side
+If an error is thrown in your method, it will be sent to the integration-side
 caller:
 
 ```javascript
@@ -72,7 +72,7 @@ var MyApi = ObsidianApi.$extend({
 
     myApiMethod: function(a, b) {
         "@api";  // <- this annotation is required to make an API method
-        throw new Error("NotImplementedError");  // This error will be send
+        throw new Error("NotImplementedError");  // This error will be sent
                                                  // to the integration
     },
 
@@ -93,15 +93,15 @@ api.addApiMethod("myApiMethod", function(a, b) {
 
 ### Handling Asynchronous Calls
 
-There is two way to implement asynchronous API methods with Obsidian API:
+There are two ways to implement asynchronous API methods with Obsidian API:
 
 * You can use [Node-like callbacks][node-cb],
 * or you can use [promises][].
 
-__NOTE:__ whatever you choose using a callback or promise in your API method,
+__NOTE:__ whatever you choose, using a callback or promise in your API method,
 the integration-side caller will still be able to use both to get the method's
 return value: so if you use the "callback way" in your application-side method,
-the integration script can use a promise OR a callback depending of what its
+the integration script can use a promise OR a callback depending on what its
 developer prefers.
 
 #### Using Node-Like Callbacks
@@ -120,14 +120,14 @@ function callback(error, result) {
 }
 ```
 
-To send an error to the callback, just pass the error as first parameter:
+To send an error to the callback, just pass the error as the first parameter:
 
 ```javascript
 callback(new Error("FooError"));
 ```
 
 To send a result to the callback, pass `null` to the first parameter and your
-result as second parameter:
+result as the second parameter:
 
 ```javascript
 callback(null, "my result");
@@ -151,7 +151,7 @@ var MyApi = ObsidianApi.$extend({
             }
         });
 
-        // Note that this method MUST retun NOTHING except "undefined"
+        // Note that this method MUST return NOTHING except "undefined"
     },
 
     // ...
@@ -161,7 +161,7 @@ var MyApi = ObsidianApi.$extend({
 
 #### Using Promises
 
-To use promises in you API method, you only have to return your promise,
+To use promises in your API method, you only have to return your promise,
 Obsidian API will wait for the promise to be resolved (or rejected) to return
 the result to the integration-side caller:
 
@@ -171,7 +171,7 @@ var MyApi = ObsidianApi.$extend({
     myApiMethod: function(a, b) {
         "@api";
 
-        return someAsynchronousFunctionThatReturnAPromise(a, b);
+        return someAsynchronousFunctionThatReturnsAPromise(a, b);
     },
 
     // ...
@@ -182,7 +182,7 @@ var MyApi = ObsidianApi.$extend({
 
 ## Events
 
-The application-side API is can send events to the integration. This can be
+The application-side API can send events to the integration. This can be
 done with this simple line of code:
 
 ```javascript
@@ -192,7 +192,7 @@ api.sendEvent("eventName", "param1", "param2", ...);
 
 ## Configuration
 
-The integration can send aconfiguration object to the application before it was
+The integration can send a configuration object to the application before it was
 initialized (parameters are passed through the `iframe` URL). To get the
 configuration, just call the `$getConfig()` static method of the `ObsidianApi`
 class:
@@ -203,7 +203,7 @@ var config = MyApi.$getConfig();  // -> {}
 
 ## Complete Example:
 
-You can find a more complete example that contain both application-side and
+You can find a more complete example that contains both application-side and
 integration-side code [here](./example.html).
 
 
