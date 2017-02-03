@@ -81,14 +81,14 @@
                     </nav>
                 
                 <article>
-                    <p><strong>Obsidian API</strong> is a library that allow you to implement an API between a web
+                    <p><strong>Obsidian API</strong> is a library that allows you to implement an API between a web
 application running in an <code>iframe</code> and the web page that integrates it.</p>
 <p><strong>Obsidian API is composed of two parts:</strong></p>
 <ul>
 <li>An application-side Class (inside the <code>iframe</code>) that will be used to
 implement the API (methods that will be called remotely by the
 integration,...),</li>
-<li>and a integration-side script (outside the <code>iframe</code>) that will be used as
+<li>and an integration-side script (outside the <code>iframe</code>) that will be used as
 a client for the API. This script is completely generic and can be used to
 connect to any web application that implements an Obsidian API.</li>
 </ul>
@@ -97,8 +97,8 @@ connect to any web application that implements an Obsidian API.</li>
 <li>Remote method calls with return value (integration → app → integration),</li>
 <li>Provides callback-based events (app → integration),</li>
 <li>Allows the integration to send some configuration to the application before
-it was loaded,</li>
-<li>Allows to transfer of various types of objects (including <code>TypedArrays</code>,
+it is loaded,</li>
+<li>Allows to transfer various types of objects (including <code>TypedArrays</code>,
 <code>Blob</code> and <code>Buffer</code>),</li>
 <li>Allows to use both node-like callbacks or promises for asynchronous calls.</li>
 </ul>

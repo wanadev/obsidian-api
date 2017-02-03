@@ -77,7 +77,7 @@
             </li>
         
             <li>
-                <a href="#listen-to-api-events">Listen to API Events</a>
+                <a href="#listening-to-api-events">Listening to API Events</a>
                 
                     
     <ul class="toc">
@@ -167,17 +167,17 @@ will be automatically created by the integration script.</p>
 iframe:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"obsidian-app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
-<p>The you have to include the integration script. If you are using
-<a href="http://browserify.org/">Browserify</a>, you can <code>require</code> the script from the <code>obsdian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm
+<p>Then you have to include the integration script. If you are using
+<a href="http://browserify.org/">Browserify</a>, you can <code>require</code> the script from the <code>obsidian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm
 package</a>:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obsidianApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">"obsidian-api/lib/integration"</span>);</code></pre>
 
-<p>Else you can include the <a href="https://raw.githubusercontent.com/wanadev/obsidian-api/master/dist/integration.js">static build of the integration script</a>
+<p>Otherwise you can include the <a href="https://raw.githubusercontent.com/wanadev/obsidian-api/master/dist/integration.js">static build of the integration script</a>
 in your HTML page:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/integration.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-<p><strong>NOTE:</strong> The integration script is the same whatever the Obsidian Application
-you integrates, it is completely generic: the application will push its API
+<p><strong>NOTE:</strong> The integration script is the same for any Obsidian Application
+you integrate, it is completely generic: the application will push its API
 into your integration through this script.</p>
 <p>Finally the minimal code to start the application is the following:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> app = obsidianApp({
@@ -187,14 +187,14 @@ into your integration through this script.</p>
 
 <p>Where:</p>
 <ul>
-<li><code>htmlNode</code> is the HTMLElement (or a query selector that match the element)
+<li><code>htmlNode</code> is the HTMLElement (or a query selector that matches the element)
 where the <code>iframe</code> will be created,</li>
 <li><code>appUrl</code> is the root URL of the application.</li>
 </ul>
 <p>That's it.</p>
-<h2 id="listen-to-api-events">Listen to API Events</h2>
+<h2 id="listening-to-api-events">Listening to API Events</h2>
 <p>Before we start talking about API methods, we have to speak about API Events.
-Obsidian Application are able to send event, with or without parameters, to the
+Obsidian Application are able to send events, with or without parameters, to the
 integration.</p>
 <p>Listening to those events is easy:</p>
 <pre><code class="hljs javascript">app.on(<span class="hljs-string">"eventName"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">param1, param2</span>) </span>{
@@ -202,7 +202,7 @@ integration.</p>
 });</code></pre>
 
 <h3 id="the-ready-event">The "ready" event</h3>
-<p>Each Obsidian Application have there own set of events, <strong>but</strong> there is one
+<p>Each Obsidian Application has their own set of events, <strong>but</strong> there is one
 standard event that <strong>every</strong> application will always call: the <code>ready</code> event.</p>
 <p>This event is called when the application is fully loaded and the API is ready
 to answer requests. So you will have to wait for this event before querying the
@@ -250,8 +250,8 @@ callback function after the method's parameters:</p>
 });</code></pre>
 
 <h4 id="using-promises">Using Promises</h4>
-<p>Obsidian API allows you to use promise instead of callback to handle the
-methods result and to handle results:</p>
+<p>Obsidian API allows you to use promises instead of callbacks to handle the
+method's result and to handle errors:</p>
 <pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
         <span class="hljs-comment">// Use the result here...</span>
@@ -277,7 +277,7 @@ declare it:</p>
 });</code></pre>
 
 <h2 id="complete-example-">Complete Example:</h2>
-<p>You can find a more complete example that contain both application-side and
+<p>You can find a more complete example that contains both application-side and
 integration-side code <a href="./example.html">here</a>.</p>
 
                 </article>

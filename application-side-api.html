@@ -156,8 +156,8 @@
                     <h1 id="application-side-api">Application-Side API</h1>
 <h2 id="implementing-an-obsidian-api-in-a-web-application">Implementing an Obsidian API In a Web Application</h2>
 <p>To implement an Obsidian API in your application, you have to extend the
-<code>ObsidianApi</code> class proveded by the <code>obsidian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm package</a>:</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// Import the class (Node-like require if you are using Browserify, else you</span>
+<code>ObsidianApi</code> class provided by the <code>obsidian-api</code> <a href="https://www.npmjs.com/package/obsidian-api">npm package</a>:</p>
+<pre><code class="hljs javascript"><span class="hljs-comment">// Import the class (Node-like require if you are using Browserify, otherwise you</span>
 <span class="hljs-comment">// have to include the obsidian-api.js script in your web page).</span>
 <span class="hljs-keyword">var</span> ObsidianApi = <span class="hljs-built_in">require</span>(<span class="hljs-string">"obsidian-api"</span>);
 
@@ -177,10 +177,10 @@ and ready to respond to API calls:</p>
 <pre><code class="hljs javascript">api.ready();</code></pre>
 
 <h2 id="methods">Methods</h2>
-<p>There is two way to add methods to the API:</p>
+<p>There are two ways to add methods to the API:</p>
 <ul>
 <li>Implementing the method in our API class,</li>
-<li>Adding dynamically the method at run-time.</li>
+<li>Dynamically adding the method at run-time.</li>
 </ul>
 <h3 id="adding-methods-to-the-api-class">Adding Methods To The API Class</h3>
 <p>To implement an API method in our API class, we only have to add a method with
@@ -196,13 +196,13 @@ the <code>"@api"</code> <a href="https://wanadev.github.io/abitbol/using-abitbol
 
 });</code></pre>
 
-<p>If an error is thrown in your method, it will be send to the integration-side
+<p>If an error is thrown in your method, it will be sent to the integration-side
 caller:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
 
     <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
         <span class="hljs-string">"@api"</span>;  <span class="hljs-comment">// &lt;- this annotation is required to make an API method</span>
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"NotImplementedError"</span>);  <span class="hljs-comment">// This error will be send</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"NotImplementedError"</span>);  <span class="hljs-comment">// This error will be sent</span>
                                                  <span class="hljs-comment">// to the integration</span>
     },
 
@@ -217,15 +217,15 @@ caller:</p>
 });</code></pre>
 
 <h3 id="handling-asynchronous-calls">Handling Asynchronous Calls</h3>
-<p>There is two way to implement asynchronous API methods with Obsidian API:</p>
+<p>There are two ways to implement asynchronous API methods with Obsidian API:</p>
 <ul>
 <li>You can use <a href="http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/">Node-like callbacks</a>,</li>
 <li>or you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</li>
 </ul>
-<p><strong>NOTE:</strong> whatever you choose using a callback or promise in your API method,
+<p><strong>NOTE:</strong> whatever you choose, using a callback or promise in your API method,
 the integration-side caller will still be able to use both to get the method's
 return value: so if you use the "callback way" in your application-side method,
-the integration script can use a promise OR a callback depending of what its
+the integration script can use a promise OR a callback depending on what its
 developer prefers.</p>
 <h4 id="using-node-like-callbacks">Using Node-Like Callbacks</h4>
 <p>What we call Node-like callbacks here are callbacks that can take up to two
@@ -239,11 +239,11 @@ parameters:</p>
     <span class="hljs-comment">// ...</span>
 }</code></pre>
 
-<p>To send an error to the callback, just pass the error as first parameter:</p>
+<p>To send an error to the callback, just pass the error as the first parameter:</p>
 <pre><code class="hljs javascript">callback(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"FooError"</span>));</code></pre>
 
 <p>To send a result to the callback, pass <code>null</code> to the first parameter and your
-result as second parameter:</p>
+result as the second parameter:</p>
 <pre><code class="hljs javascript">callback(<span class="hljs-literal">null</span>, <span class="hljs-string">"my result"</span>);</code></pre>
 
 <p>To use a callback for your API method, just add a <code>callback</code> parameter to your
@@ -262,7 +262,7 @@ parameters as described above:</p>
             }
         });
 
-        <span class="hljs-comment">// Note that this method MUST retun NOTHING except "undefined"</span>
+        <span class="hljs-comment">// Note that this method MUST return NOTHING except "undefined"</span>
     },
 
     <span class="hljs-comment">// ...</span>
@@ -270,7 +270,7 @@ parameters as described above:</p>
 });</code></pre>
 
 <h4 id="using-promises">Using Promises</h4>
-<p>To use promises in you API method, you only have to return your promise,
+<p>To use promises in your API method, you only have to return your promise,
 Obsidian API will wait for the promise to be resolved (or rejected) to return
 the result to the integration-side caller:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
@@ -278,7 +278,7 @@ the result to the integration-side caller:</p>
     <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
         <span class="hljs-string">"@api"</span>;
 
-        <span class="hljs-keyword">return</span> someAsynchronousFunctionThatReturnAPromise(a, b);
+        <span class="hljs-keyword">return</span> someAsynchronousFunctionThatReturnsAPromise(a, b);
     },
 
     <span class="hljs-comment">// ...</span>
@@ -287,20 +287,20 @@ the result to the integration-side caller:</p>
 
 
 <h2 id="events">Events</h2>
-<p>The application-side API is can send events to the integration. This can be
+<p>The application-side API can send events to the integration. This can be
 done with this simple line of code:</p>
 <pre><code class="hljs javascript">api.sendEvent(<span class="hljs-string">"eventName"</span>, <span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>, ...);</code></pre>
 
 
 <h2 id="configuration">Configuration</h2>
-<p>The integration can send aconfiguration object to the application before it was
+<p>The integration can send a configuration object to the application before it was
 initialized (parameters are passed through the <code>iframe</code> URL). To get the
 configuration, just call the <code>$getConfig()</code> static method of the <code>ObsidianApi</code>
 class:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> config = MyApi.$getConfig();  <span class="hljs-comment">// -&gt; {}</span></code></pre>
 
 <h2 id="complete-example-">Complete Example:</h2>
-<p>You can find a more complete example that contain both application-side and
+<p>You can find a more complete example that contains both application-side and
 integration-side code <a href="./example.html">here</a>.</p>
 
                 </article>
