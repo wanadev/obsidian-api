@@ -16,6 +16,16 @@ module.exports = function(grunt) {
                     }
                 }
             },
+            application: {
+                files: {
+                    "dist/obsidian-api.js": ["lib/index.js"]
+                },
+                options: {
+                    browserifyOptions: {
+                        standalone: "ObsidianApi"
+                    }
+                }
+            },
             testInte: {
                 files: {
                     "test/inte/tests.generated.js": ["test/*.js"]
@@ -34,6 +44,15 @@ module.exports = function(grunt) {
                     browserifyOptions: {
                         debug: true
                     }
+                }
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    "dist/integration.min.js": "dist/integration.js",
+                    "dist/obsidian-api.min.js": "dist/obsidian-api.js"
                 }
             }
         },
@@ -76,9 +95,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-mocha-phantomjs");
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-shell");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
 
-    grunt.registerTask("default", ["gen-inte"]);
-    grunt.registerTask("gen-inte", "Generates the integration script", ["browserify:integration"]);
+    grunt.registerTask("default", ["gen-inte", "gen-app", "uglify"]);
+    grunt.registerTask("gen-inte", "Generates the dist integration script", ["browserify:integration"]);
+    grunt.registerTask("gen-app", "Generates the dist application script", ["browserify:application"]);
     grunt.registerTask("gen-test", "Generates the test scripts", ["browserify:testInte",  "browserify:testApp"]);
     grunt.registerTask("test", "Run tests in a web browser", ["jshint", "gen-test", "shell:serverStart", "mocha_phantomjs", "shell:serverStop"]);
 

@@ -13,7 +13,7 @@ To implement an Obsidian API in your application, you have to extend the
 
 ```javascript
 // Import the class (Node-like require if you are using Browserify, otherwise you
-// have to include the obsidian-api.js script in your web page).
+// have to include the dist/obsidian-api.js script in your web page).
 var ObsidianApi = require("obsidian-api");
 
 // Extending the ObsidianApi Class
