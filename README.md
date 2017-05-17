@@ -1,5 +1,7 @@
 # Obsidian API
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/obsidian-api.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/wanadev/obsidian-api.svg?branch=master)](https://travis-ci.org/wanadev/obsidian-api)
 [![NPM Version](http://img.shields.io/npm/v/obsidian-api.svg?style=flat)](https://www.npmjs.com/package/obsidian-api)
 [![License](http://img.shields.io/npm/l/obsidian-api.svg?style=flat)](https://github.com/wanadev/obsidian-api/blob/master/LICENSE)
