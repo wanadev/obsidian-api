@@ -41,6 +41,7 @@ Documentation and examples:
 
 ## Changelog
 
+* **1.0.5:** Updates dependencies
 * **1.0.4:** Documentation
 * **1.0.3:** Updates dependencies
 * **1.0.2:** Fixes Node.js Buffer transfer

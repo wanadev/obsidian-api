@@ -1,5 +1,7 @@
 "use strict";
 
+require("./polyfill");
+
 var APP_URL = location.protocol + "//" + location.hostname + ":3011";
 
 var expect = require("expect.js");

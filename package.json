@@ -1,38 +1,38 @@
 {
-  "name": "obsidian-api",
-  "version": "1.0.4",
-  "description": "Integration API for Wanadev's obsidian projects",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wanadev/obsidian-api.git"
-  },
-  "author": "Wanadev <http://www/wanadev.fr/>",
-  "license": "BSD-3-Clause",
-  "dependencies": {
-    "abitbol": "^1.1.0",
-    "lodash": "^4.17.4",
-    "q": "^1.4.1",
-    "uuid": "^3.0.1"
-  },
-  "devDependencies": {
-    "enlightme": "^0.1.1",
-    "expect.js": "^0.3.1",
-    "express": "^4.13.3",
-    "grunt": "^1.0.1",
-    "grunt-browserify": "^5.0.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^3.0.0",
-    "grunt-mocha-phantomjs": "^4.0.0",
-    "grunt-shell": "^2.1.0",
-    "pm2": "^2.2.3",
-    "serve-static": "^1.10.0"
-  },
-  "enlightme": {
-    "appName": "Obsidian API"
-  }
+    "name": "obsidian-api",
+    "version": "1.0.4",
+    "description": "Integration API for Wanadev's obsidian projects",
+    "main": "lib/index.js",
+    "scripts": {
+        "test": "./node_modules/.bin/grunt test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wanadev/obsidian-api.git"
+    },
+    "author": "Wanadev <http://www/wanadev.fr/>",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "abitbol": "^2.0.0",
+        "lodash": "^4.17.5",
+        "q": "^1.5.1",
+        "uuid": "^3.2.1"
+    },
+    "devDependencies": {
+        "enlightme": "^0.1.1",
+        "expect.js": "^0.3.1",
+        "express": "^4.16.3",
+        "grunt": "^1.0.2",
+        "grunt-browserify": "^5.3.0",
+        "grunt-cli": "^1.2.0",
+        "grunt-contrib-jshint": "^1.1.0",
+        "grunt-contrib-uglify": "^3.3.0",
+        "grunt-mocha-phantomjs": "^4.0.0",
+        "grunt-shell": "^2.1.0",
+        "pm2": "^2.10.2",
+        "serve-static": "^1.13.2"
+    },
+    "enlightme": {
+        "appName": "Obsidian API"
+    }
 }
