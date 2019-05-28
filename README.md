@@ -41,6 +41,7 @@ Documentation and examples:
 
 ## Changelog
 
+* **1.0.7**: Fixes Error unserialization
 * **1.0.6:** Fixes issue when API functions return `null` (#17)
 * **1.0.5:** Updates dependencies
 * **1.0.4:** Documentation
