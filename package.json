@@ -29,7 +29,7 @@
         "grunt-contrib-uglify": "^4.0.1",
         "grunt-mocha-phantomjs": "^4.0.0",
         "grunt-shell": "^3.0.1",
-        "pm2": "^3.5.1",
+        "pm2": "^4.0.0",
         "serve-static": "^1.14.1"
     },
     "enlightme": {
