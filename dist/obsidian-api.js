@@ -149,7 +149,7 @@ module.exports = {
             if (kvPair[i].length === 0) {
                 continue;
             }
-            if (!_(kvPair[i]).includes("=")) {
+            if (!includes(kvPair[i], "=")) {
                 params[kvPair[i]] = null;
                 continue;
             }
