@@ -1,6 +1,6 @@
 {
     "name": "obsidian-api",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Integration API for Wanadev's obsidian projects",
     "main": "lib/index.js",
     "scripts": {
