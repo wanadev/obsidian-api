@@ -1,11 +1,9 @@
 # Obsidian API
 
-[![Build Status](https://travis-ci.org/wanadev/obsidian-api.svg?branch=master)](https://travis-ci.org/wanadev/obsidian-api)
+[![Lint and test](https://github.com/wanadev/obsidian-api/actions/workflows/tests.yml/badge.svg)](https://github.com/wanadev/obsidian-api/actions/workflows/tests.yml)
 [![NPM Version](http://img.shields.io/npm/v/obsidian-api.svg?style=flat)](https://www.npmjs.com/package/obsidian-api)
 [![License](http://img.shields.io/npm/l/obsidian-api.svg?style=flat)](https://github.com/wanadev/obsidian-api/blob/master/LICENSE)
-[![Dependencies](https://img.shields.io/david/wanadev/obsidian-api.svg?maxAge=2592000)]()
-[![Dev Dependencies](https://img.shields.io/david/dev/wanadev/obsidian-api.svg?maxAge=2592000)]()
-[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/obsidian-api.svg)](https://greenkeeper.io/)
+[![Discord](https://img.shields.io/badge/chat-Discord-8c9eff?logo=discord&logoColor=ffffff)](https://discord.gg/BmUkEdMuFp)
 
 **Obsidian API** is a library that allows you to implement an API between a web
 application running in an `iframe` and the web page that integrates it.
