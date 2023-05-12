@@ -4,8 +4,9 @@ API.js
 Gruntfile.js
 .jshintrc
 .tern-project
-.travis.yml
 yarn.lock
 doc
 doc.generated
 build
+.github/
+RELEASE.rst

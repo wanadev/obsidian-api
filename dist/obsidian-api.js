@@ -129,8 +129,8 @@ var ObsidianApi = Class.$extend({
 
 module.exports = ObsidianApi;
 
-},{"./helpers.js":2,"abitbol":4,"lodash/isFunction":38,"lodash/keys":45,"lodash/tail":47}],2:[function(require,module,exports){
-(function (global,Buffer){
+},{"./helpers.js":2,"abitbol":4,"lodash/isFunction":40,"lodash/keys":47,"lodash/tail":49}],2:[function(require,module,exports){
+(function (global,Buffer){(function (){
 "use strict";
 
 var includes = require("lodash/includes");
@@ -272,8 +272,8 @@ module.exports = {
 
 };
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"buffer":7,"lodash/includes":33}],3:[function(require,module,exports){
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
+},{"buffer":7,"lodash/includes":35}],3:[function(require,module,exports){
 "use strict";
 
 module.exports = require("./ObsidianApi.js");
@@ -295,7 +295,10 @@ function inherit(SuperClass) {
 
 // Checks if the given function uses abitbol special properties ($super, $name,...)
 function usesSpecialProperty(fn) {
-    return Boolean(fn.toString().match(/.*(\$super|\$name|\$computedPropertyName).*/));
+    var fnString = fn.toString();
+    return fnString.indexOf("$super") > -1 ||
+        fnString.indexOf("$name") > -1 ||
+        fnString.indexOf("$computedPropertyName") > -1;
 }
 
 var Class = function () {};
@@ -749,7 +752,8 @@ function toByteArray (b64) {
     ? validLen - 4
     : validLen
 
-  for (var i = 0; i < len; i += 4) {
+  var i
+  for (i = 0; i < len; i += 4) {
     tmp =
       (revLookup[b64.charCodeAt(i)] << 18) |
       (revLookup[b64.charCodeAt(i + 1)] << 12) |
@@ -808,9 +812,7 @@ function fromByteArray (uint8) {
 
   // go through the array every three bytes, we'll deal with trailing stuff later
   for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(
-      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
-    ))
+    parts.push(encodeChunk(uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)))
   }
 
   // pad the end with zeros, but make sure to not forget the extra bytes
@@ -835,7 +837,7 @@ function fromByteArray (uint8) {
 }
 
 },{}],7:[function(require,module,exports){
-(function (Buffer){
+(function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -2614,7 +2616,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-}).call(this,require("buffer").Buffer)
+}).call(this)}).call(this,require("buffer").Buffer)
 },{"base64-js":6,"buffer":7,"ieee754":8}],8:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -2709,7 +2711,7 @@ var Symbol = root.Symbol;
 
 module.exports = Symbol;
 
-},{"./_root":31}],10:[function(require,module,exports){
+},{"./_root":32}],10:[function(require,module,exports){
 var baseTimes = require('./_baseTimes'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -2760,7 +2762,7 @@ function arrayLikeKeys(value, inherited) {
 
 module.exports = arrayLikeKeys;
 
-},{"./_baseTimes":20,"./_isIndex":25,"./isArguments":34,"./isArray":35,"./isBuffer":37,"./isTypedArray":44}],11:[function(require,module,exports){
+},{"./_baseTimes":20,"./_isIndex":26,"./isArguments":36,"./isArray":37,"./isBuffer":39,"./isTypedArray":46}],11:[function(require,module,exports){
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
  * shorthands.
@@ -2839,7 +2841,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":9,"./_getRawTag":24,"./_objectToString":29}],14:[function(require,module,exports){
+},{"./_Symbol":9,"./_getRawTag":25,"./_objectToString":30}],14:[function(require,module,exports){
 var baseFindIndex = require('./_baseFindIndex'),
     baseIsNaN = require('./_baseIsNaN'),
     strictIndexOf = require('./_strictIndexOf');
@@ -2861,7 +2863,7 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
-},{"./_baseFindIndex":12,"./_baseIsNaN":16,"./_strictIndexOf":32}],15:[function(require,module,exports){
+},{"./_baseFindIndex":12,"./_baseIsNaN":16,"./_strictIndexOf":33}],15:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -2881,7 +2883,7 @@ function baseIsArguments(value) {
 
 module.exports = baseIsArguments;
 
-},{"./_baseGetTag":13,"./isObjectLike":41}],16:[function(require,module,exports){
+},{"./_baseGetTag":13,"./isObjectLike":43}],16:[function(require,module,exports){
 /**
  * The base implementation of `_.isNaN` without support for number objects.
  *
@@ -2957,7 +2959,7 @@ function baseIsTypedArray(value) {
 
 module.exports = baseIsTypedArray;
 
-},{"./_baseGetTag":13,"./isLength":39,"./isObjectLike":41}],18:[function(require,module,exports){
+},{"./_baseGetTag":13,"./isLength":41,"./isObjectLike":43}],18:[function(require,module,exports){
 var isPrototype = require('./_isPrototype'),
     nativeKeys = require('./_nativeKeys');
 
@@ -2989,7 +2991,7 @@ function baseKeys(object) {
 
 module.exports = baseKeys;
 
-},{"./_isPrototype":26,"./_nativeKeys":27}],19:[function(require,module,exports){
+},{"./_isPrototype":27,"./_nativeKeys":28}],19:[function(require,module,exports){
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
  *
@@ -3045,6 +3047,27 @@ function baseTimes(n, iteratee) {
 module.exports = baseTimes;
 
 },{}],21:[function(require,module,exports){
+var trimmedEndIndex = require('./_trimmedEndIndex');
+
+/** Used to match leading whitespace. */
+var reTrimStart = /^\s+/;
+
+/**
+ * The base implementation of `_.trim`.
+ *
+ * @private
+ * @param {string} string The string to trim.
+ * @returns {string} Returns the trimmed string.
+ */
+function baseTrim(string) {
+  return string
+    ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+    : string;
+}
+
+module.exports = baseTrim;
+
+},{"./_trimmedEndIndex":34}],22:[function(require,module,exports){
 /**
  * The base implementation of `_.unary` without support for storing metadata.
  *
@@ -3060,7 +3083,7 @@ function baseUnary(func) {
 
 module.exports = baseUnary;
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 var arrayMap = require('./_arrayMap');
 
 /**
@@ -3081,15 +3104,15 @@ function baseValues(object, props) {
 
 module.exports = baseValues;
 
-},{"./_arrayMap":11}],23:[function(require,module,exports){
-(function (global){
+},{"./_arrayMap":11}],24:[function(require,module,exports){
+(function (global){(function (){
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
 module.exports = freeGlobal;
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],24:[function(require,module,exports){
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],25:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used for built-in method references. */
@@ -3137,7 +3160,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":9}],25:[function(require,module,exports){
+},{"./_Symbol":9}],26:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -3164,7 +3187,7 @@ function isIndex(value, length) {
 
 module.exports = isIndex;
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -3184,7 +3207,7 @@ function isPrototype(value) {
 
 module.exports = isPrototype;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -3192,7 +3215,7 @@ var nativeKeys = overArg(Object.keys, Object);
 
 module.exports = nativeKeys;
 
-},{"./_overArg":30}],28:[function(require,module,exports){
+},{"./_overArg":31}],29:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `exports`. */
@@ -3224,7 +3247,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-},{"./_freeGlobal":23}],29:[function(require,module,exports){
+},{"./_freeGlobal":24}],30:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -3248,7 +3271,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 /**
  * Creates a unary function that invokes `func` with its argument transformed.
  *
@@ -3265,7 +3288,7 @@ function overArg(func, transform) {
 
 module.exports = overArg;
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `self`. */
@@ -3276,7 +3299,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 
 module.exports = root;
 
-},{"./_freeGlobal":23}],32:[function(require,module,exports){
+},{"./_freeGlobal":24}],33:[function(require,module,exports){
 /**
  * A specialized version of `_.indexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
@@ -3301,7 +3324,28 @@ function strictIndexOf(array, value, fromIndex) {
 
 module.exports = strictIndexOf;
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
+/** Used to match a single whitespace character. */
+var reWhitespace = /\s/;
+
+/**
+ * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+ * character of `string`.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {number} Returns the index of the last non-whitespace character.
+ */
+function trimmedEndIndex(string) {
+  var index = string.length;
+
+  while (index-- && reWhitespace.test(string.charAt(index))) {}
+  return index;
+}
+
+module.exports = trimmedEndIndex;
+
+},{}],35:[function(require,module,exports){
 var baseIndexOf = require('./_baseIndexOf'),
     isArrayLike = require('./isArrayLike'),
     isString = require('./isString'),
@@ -3356,7 +3400,7 @@ function includes(collection, value, fromIndex, guard) {
 
 module.exports = includes;
 
-},{"./_baseIndexOf":14,"./isArrayLike":36,"./isString":42,"./toInteger":49,"./values":51}],34:[function(require,module,exports){
+},{"./_baseIndexOf":14,"./isArrayLike":38,"./isString":44,"./toInteger":51,"./values":53}],36:[function(require,module,exports){
 var baseIsArguments = require('./_baseIsArguments'),
     isObjectLike = require('./isObjectLike');
 
@@ -3394,7 +3438,7 @@ var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsAr
 
 module.exports = isArguments;
 
-},{"./_baseIsArguments":15,"./isObjectLike":41}],35:[function(require,module,exports){
+},{"./_baseIsArguments":15,"./isObjectLike":43}],37:[function(require,module,exports){
 /**
  * Checks if `value` is classified as an `Array` object.
  *
@@ -3422,7 +3466,7 @@ var isArray = Array.isArray;
 
 module.exports = isArray;
 
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isLength = require('./isLength');
 
@@ -3457,7 +3501,7 @@ function isArrayLike(value) {
 
 module.exports = isArrayLike;
 
-},{"./isFunction":38,"./isLength":39}],37:[function(require,module,exports){
+},{"./isFunction":40,"./isLength":41}],39:[function(require,module,exports){
 var root = require('./_root'),
     stubFalse = require('./stubFalse');
 
@@ -3497,7 +3541,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-},{"./_root":31,"./stubFalse":46}],38:[function(require,module,exports){
+},{"./_root":32,"./stubFalse":48}],40:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObject = require('./isObject');
 
@@ -3536,7 +3580,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./_baseGetTag":13,"./isObject":40}],39:[function(require,module,exports){
+},{"./_baseGetTag":13,"./isObject":42}],41:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -3573,7 +3617,7 @@ function isLength(value) {
 
 module.exports = isLength;
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -3606,7 +3650,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -3637,7 +3681,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isArray = require('./isArray'),
     isObjectLike = require('./isObjectLike');
@@ -3669,7 +3713,7 @@ function isString(value) {
 
 module.exports = isString;
 
-},{"./_baseGetTag":13,"./isArray":35,"./isObjectLike":41}],43:[function(require,module,exports){
+},{"./_baseGetTag":13,"./isArray":37,"./isObjectLike":43}],45:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -3700,7 +3744,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":13,"./isObjectLike":41}],44:[function(require,module,exports){
+},{"./_baseGetTag":13,"./isObjectLike":43}],46:[function(require,module,exports){
 var baseIsTypedArray = require('./_baseIsTypedArray'),
     baseUnary = require('./_baseUnary'),
     nodeUtil = require('./_nodeUtil');
@@ -3729,7 +3773,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 
 module.exports = isTypedArray;
 
-},{"./_baseIsTypedArray":17,"./_baseUnary":21,"./_nodeUtil":28}],45:[function(require,module,exports){
+},{"./_baseIsTypedArray":17,"./_baseUnary":22,"./_nodeUtil":29}],47:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeys = require('./_baseKeys'),
     isArrayLike = require('./isArrayLike');
@@ -3768,7 +3812,7 @@ function keys(object) {
 
 module.exports = keys;
 
-},{"./_arrayLikeKeys":10,"./_baseKeys":18,"./isArrayLike":36}],46:[function(require,module,exports){
+},{"./_arrayLikeKeys":10,"./_baseKeys":18,"./isArrayLike":38}],48:[function(require,module,exports){
 /**
  * This method returns `false`.
  *
@@ -3788,7 +3832,7 @@ function stubFalse() {
 
 module.exports = stubFalse;
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 var baseSlice = require('./_baseSlice');
 
 /**
@@ -3812,7 +3856,7 @@ function tail(array) {
 
 module.exports = tail;
 
-},{"./_baseSlice":19}],48:[function(require,module,exports){
+},{"./_baseSlice":19}],50:[function(require,module,exports){
 var toNumber = require('./toNumber');
 
 /** Used as references for various `Number` constants. */
@@ -3856,7 +3900,7 @@ function toFinite(value) {
 
 module.exports = toFinite;
 
-},{"./toNumber":50}],49:[function(require,module,exports){
+},{"./toNumber":52}],51:[function(require,module,exports){
 var toFinite = require('./toFinite');
 
 /**
@@ -3894,15 +3938,13 @@ function toInteger(value) {
 
 module.exports = toInteger;
 
-},{"./toFinite":48}],50:[function(require,module,exports){
-var isObject = require('./isObject'),
+},{"./toFinite":50}],52:[function(require,module,exports){
+var baseTrim = require('./_baseTrim'),
+    isObject = require('./isObject'),
     isSymbol = require('./isSymbol');
 
 /** Used as references for various `Number` constants. */
 var NAN = 0 / 0;
-
-/** Used to match leading and trailing whitespace. */
-var reTrim = /^\s+|\s+$/g;
 
 /** Used to detect bad signed hexadecimal string values. */
 var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
@@ -3953,7 +3995,7 @@ function toNumber(value) {
   if (typeof value != 'string') {
     return value === 0 ? value : +value;
   }
-  value = value.replace(reTrim, '');
+  value = baseTrim(value);
   var isBinary = reIsBinary.test(value);
   return (isBinary || reIsOctal.test(value))
     ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -3962,7 +4004,7 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":40,"./isSymbol":43}],51:[function(require,module,exports){
+},{"./_baseTrim":21,"./isObject":42,"./isSymbol":45}],53:[function(require,module,exports){
 var baseValues = require('./_baseValues'),
     keys = require('./keys');
 
@@ -3998,5 +4040,5 @@ function values(object) {
 
 module.exports = values;
 
-},{"./_baseValues":22,"./keys":45}]},{},[3])(3)
+},{"./_baseValues":23,"./keys":47}]},{},[3])(3)
 });
