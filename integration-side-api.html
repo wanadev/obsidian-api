@@ -10,9 +10,9 @@
             <link rel="shortcut icon" type="image/png" href="images/obsidian-api-logo.svg" />
         
         
-            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
-        
             <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/obsidian.css" />
         
     </head>
 
@@ -104,7 +104,7 @@
             </li>
         
             <li>
-                <a href="#getting-return-value-handling-errors">Getting Return Value / Handling Errors</a>
+                <a href="#getting-return-value--handling-errors">Getting Return Value / Handling Errors</a>
                 
                     
     <ul class="toc">
@@ -135,7 +135,7 @@
             </li>
         
             <li>
-                <a href="#complete-example-">Complete Example:</a>
+                <a href="#complete-example">Complete Example:</a>
                 
             </li>
         
@@ -191,7 +191,7 @@ into your integration through this script.</p>
 where the <code>iframe</code> will be created,</li>
 <li><code>appUrl</code> is the root URL of the application.</li>
 </ul>
-<p>That's it.</p>
+<p>That&#39;s it.</p>
 <h2 id="listening-to-api-events">Listening to API Events</h2>
 <p>Before we start talking about API methods, we have to speak about API Events.
 Obsidian Application are able to send events, with or without parameters, to the
@@ -201,7 +201,7 @@ integration.</p>
     <span class="hljs-comment">// ...</span>
 });</code></pre>
 
-<h3 id="the-ready-event">The "ready" event</h3>
+<h3 id="the-ready-event">The &quot;ready&quot; event</h3>
 <p>Each Obsidian Application has their own set of events, <strong>but</strong> there is one
 standard event that <strong>every</strong> application will always call: the <code>ready</code> event.</p>
 <p>This event is called when the application is fully loaded and the API is ready
@@ -220,7 +220,7 @@ simple:</p>
 
 <p><strong>NOTE:</strong> No methods should be called before receiving the <code>ready</code> event from
 the API.</p>
-<h3 id="getting-return-value-handling-errors">Getting Return Value / Handling Errors</h3>
+<h3 id="getting-return-value--handling-errors">Getting Return Value / Handling Errors</h3>
 <p>Obsidian API method calls are asynchronous. So to get result or handle errors we
 have two choices:</p>
 <ul>
@@ -240,7 +240,7 @@ parameters:</p>
 }</code></pre>
 
 <p>To use callbacks to get the method result or handling errors, just pass the
-callback function after the method's parameters:</p>
+callback function after the method&#39;s parameters:</p>
 <pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param2"</span>, <span class="hljs-string">"param2"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, result</span>) </span>{
     <span class="hljs-keyword">if</span> (error) {
         <span class="hljs-comment">// Handle error here...</span>
@@ -251,7 +251,7 @@ callback function after the method's parameters:</p>
 
 <h4 id="using-promises">Using Promises</h4>
 <p>Obsidian API allows you to use promises instead of callbacks to handle the
-method's result and to handle errors:</p>
+method&#39;s result and to handle errors:</p>
 <pre><code class="hljs javascript">api.myApiMethod(<span class="hljs-string">"param1"</span>, <span class="hljs-string">"param2"</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
         <span class="hljs-comment">// Use the result here...</span>
@@ -276,7 +276,7 @@ declare it:</p>
     }
 });</code></pre>
 
-<h2 id="complete-example-">Complete Example:</h2>
+<h2 id="complete-example">Complete Example:</h2>
 <p>You can find a more complete example that contains both application-side and
 integration-side code <a href="./example.html">here</a>.</p>
 
@@ -284,11 +284,11 @@ integration-side code <a href="./example.html">here</a>.</p>
             </div>
 
             <footer>
-                Copyright (c)  2015-2017 Wanadev
+                Copyright (c)  2015-2023 Wanadev
 - <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
-Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.2.0
 
             </footer>
 

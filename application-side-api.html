@@ -10,9 +10,9 @@
             <link rel="shortcut icon" type="image/png" href="images/obsidian-api-logo.svg" />
         
         
-            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
-        
             <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/obsidian.css" />
         
     </head>
 
@@ -123,7 +123,7 @@
             </li>
         
             <li>
-                <a href="#complete-example-">Complete Example:</a>
+                <a href="#complete-example">Complete Example:</a>
                 
             </li>
         
@@ -184,7 +184,7 @@ and ready to respond to API calls:</p>
 </ul>
 <h3 id="adding-methods-to-the-api-class">Adding Methods To The API Class</h3>
 <p>To implement an API method in our API class, we only have to add a method with
-the <code>"@api"</code> <a href="https://wanadev.github.io/abitbol/using-abitbol.html#annotations">annotation</a> to the class:</p>
+the <code>&quot;@api&quot;</code> <a href="https://wanadev.github.io/abitbol/using-abitbol.html#annotations">annotation</a> to the class:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyApi = ObsidianApi.$extend({
 
     <span class="hljs-attr">myApiMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
@@ -223,8 +223,8 @@ caller:</p>
 <li>or you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</li>
 </ul>
 <p><strong>NOTE:</strong> whatever you choose, using a callback or promise in your API method,
-the integration-side caller will still be able to use both to get the method's
-return value: so if you use the "callback way" in your application-side method,
+the integration-side caller will still be able to use both to get the method&#39;s
+return value: so if you use the &quot;callback way&quot; in your application-side method,
 the integration script can use a promise OR a callback depending on what its
 developer prefers.</p>
 <h4 id="using-node-like-callbacks">Using Node-Like Callbacks</h4>
@@ -299,7 +299,7 @@ configuration, just call the <code>$getConfig()</code> static method of the <cod
 class:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> config = MyApi.$getConfig();  <span class="hljs-comment">// -&gt; {}</span></code></pre>
 
-<h2 id="complete-example-">Complete Example:</h2>
+<h2 id="complete-example">Complete Example:</h2>
 <p>You can find a more complete example that contains both application-side and
 integration-side code <a href="./example.html">here</a>.</p>
 
@@ -307,11 +307,11 @@ integration-side code <a href="./example.html">here</a>.</p>
             </div>
 
             <footer>
-                Copyright (c)  2015-2017 Wanadev
+                Copyright (c)  2015-2023 Wanadev
 - <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
-Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.2.0
 
             </footer>
 
