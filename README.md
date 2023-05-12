@@ -39,12 +39,43 @@ Documentation and examples:
 
 ## Changelog
 
-* **1.0.8:** Import only used lodash functions instead of the whole library (#30)
-* **1.0.7**: Fixes Error unserialization
-* **1.0.6:** Fixes issue when API functions return `null` (#17)
-* **1.0.5:** Updates dependencies
-* **1.0.4:** Documentation
-* **1.0.3:** Updates dependencies
-* **1.0.2:** Fixes Node.js Buffer transfer
-* **1.0.1:** Updates dependencies
-* **1.0.0:** First public release
+* **[NEXT]** (changes on master that have not been released yet):
+
+  * Updated dependencies (@jbghoul, #31)
+  * Replaced deprecated mocha-phantomjs by mocha-headless-chrome to run tests (@jbghoul, #31)
+
+* **1.0.8:**
+
+  * Import only used lodash functions instead of the whole library (#30)
+
+* **1.0.7**:
+
+  * Fixes Error unserialization
+
+* **1.0.6:**
+
+  * Fixes issue when API functions return `null` (#17)
+
+* **1.0.5:**
+
+  * Updates dependencies
+
+* **1.0.4:**
+
+  * Documentation
+
+* **1.0.3:**
+
+  * Updates dependencies
+
+* **1.0.2:**
+
+  * Fixes Node.js Buffer transfer
+
+* **1.0.1:**
+
+  * Updates dependencies
+
+* **1.0.0:**
+
+  * First public release
