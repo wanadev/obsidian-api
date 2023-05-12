@@ -30,11 +30,50 @@ application running in an `iframe` and the web page that integrates it.
 ![Obsidian API Schema](./doc/images/obsidian-api-schema.png)
 
 
+## Install
+
+    npm install obsidian-api
+
+
 ## Documentation
 
 Documentation and examples:
 
 * https://wanadev.github.io/obsidian-api/
+
+
+## Contributing
+
+### Questions
+
+If you have any question, you can:
+
+* [Open an issue on GitHub][gh-issue]
+* [Ask on discord][discord]
+
+### Bugs
+
+If you found a bug, please [open an issue on Github][gh-issue] with as much information as possible.
+
+### Pull Requests
+
+Please consider [filing a bug][gh-issue] before starting to work on a new feature. This will allow us to discuss the best way to do it. This is of course not necessary if you just want to fix some typo or small errors in the code.
+
+### Coding Style / Lint
+
+To check coding style, run the follwoing command:
+
+    npx grunt jshint
+
+### Tests
+
+Tu run tests, use the following command:
+
+    npx grunt test
+
+
+[gh-issue]: https://github.com/wanadev/obsidian-api/issues
+[discord]: https://discord.gg/BmUkEdMuFp
 
 
 ## Changelog
