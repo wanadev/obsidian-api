@@ -7,6 +7,7 @@ on:
       - "test/**"
       - ".github/workflows/tests.yml"
       - "package.json"
+      - "package-lock.json"
       - "Gruntfile.js"
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - "test/**"
       - ".github/workflows/tests.yml"
       - "package.json"
+      - "package-lock.json"
       - "Gruntfile.js"
 
 jobs:
