@@ -94,7 +94,7 @@ module.exports = function(grunt) {
                 ].join(" && ")
             },
             mocha_headless_chrome: {
-                command: "npx mocha-headless-chrome -f http://localhost:3010",
+                command: "npx mocha-headless-chrome -f http://localhost:3010 --args no-sandbox",
             },
         }
     });
