@@ -61,7 +61,7 @@ Please consider [filing a bug][gh-issue] before starting to work on a new featur
 
 ### Coding Style / Lint
 
-To check coding style, run the follwoing command:
+To check coding style, run the following command:
 
     npx grunt jshint
 
