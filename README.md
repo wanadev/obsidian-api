@@ -84,6 +84,7 @@ Tu run tests, use the following command:
   * feat: Replaced calls to lodash.includes() by calls to native (ES2015) String.prototype.includes() (@flozz)
   * feat: Replaced calls to lodash.toArray() by calls to native (ES2015) Array.from() (@flozz)
   * feat: Replaced calls to lodash.keys() by calls to native (ES5) Object.keys() (@flozz)
+  * feat: Replaced calls to lodash.tail() by calls to native Array.prototype.slice(1) (@flozz)
 
 * **v1.0.9:**
 
