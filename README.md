@@ -80,6 +80,10 @@ Tu run tests, use the following command:
 
 * **[NEXT]** (changes on master that have not been released yet):
 
+  * Nothing yet ;)
+
+* **v2.0.0:**
+
   * feat: Removed dependency to the uuid library. Use browser's secure implementation if available, or a fallback one else (@flozz)
   * feat: Reduced dependency to lodash (@flozz)
 
@@ -88,6 +92,8 @@ Tu run tests, use the following command:
     * Replaced calls to lodash.keys() by calls to native (ES5) Object.keys()
     * Replaced calls to lodash.tail() by calls to native Array.prototype.slice(1)
     * Replaced calls to lodash.last() by direct acces to array index
+
+  * !misc: Dropped support for non-ES2015+ browsers; you now have to use polyfill if you need to support old browsers (@flozz)
 
 * **v1.0.9:**
 
