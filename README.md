@@ -81,11 +81,13 @@ Tu run tests, use the following command:
 * **[NEXT]** (changes on master that have not been released yet):
 
   * feat: Removed dependency to the uuid library. Use browser's secure implementation if available, or a fallback one else (@flozz)
-  * feat: Replaced calls to lodash.includes() by calls to native (ES2015) String.prototype.includes() (@flozz)
-  * feat: Replaced calls to lodash.toArray() by calls to native (ES2015) Array.from() (@flozz)
-  * feat: Replaced calls to lodash.keys() by calls to native (ES5) Object.keys() (@flozz)
-  * feat: Replaced calls to lodash.tail() by calls to native Array.prototype.slice(1) (@flozz)
-  * feat: Replaced calls to lodash.last() by direct acces to array index (@flozz)
+  * feat: Reduced dependency to lodash (@flozz)
+
+    * Replaced calls to lodash.includes() by calls to native (ES2015) String.prototype.includes()
+    * Replaced calls to lodash.toArray() by calls to native (ES2015) Array.from()
+    * Replaced calls to lodash.keys() by calls to native (ES5) Object.keys()
+    * Replaced calls to lodash.tail() by calls to native Array.prototype.slice(1)
+    * Replaced calls to lodash.last() by direct acces to array index
 
 * **v1.0.9:**
 
