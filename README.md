@@ -81,7 +81,8 @@ Tu run tests, use the following command:
 * **[NEXT]** (changes on master that have not been released yet):
 
   * feat: Removed dependency to the uuid library. Use browser's secure implementation if available, or a fallback one else (@flozz)
-  * feat: Replaced calls to lodash.includes() by calls to native (es2025) String.includes() (@flozz)
+  * feat: Replaced calls to lodash.includes() by calls to native (ES2015) String.prototype.includes() (@flozz)
+  * feat: Replaced calls to lodash.toArray() by calls to native (ES2015) Array.from() (@flozz)
 
 * **v1.0.9:**
 
