@@ -216,6 +216,12 @@ module.exports = function(params) {
         iframe.frameborder = "0";
         iframe.scrolling = "no";
 
+        if (params.iframeAttributes) {
+            for (var attr in params.iframeAttributes) {
+                iframe.setAttribute(attr, params.iframeAttributes[attr]);
+            }
+        }
+
         var url = params.appUrl + "#chan=" + channel + "&config=" + btoa(JSON.stringify(params.config || {})).replace(/=+$/, "");
         iframe.src = url;
 

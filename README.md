@@ -80,6 +80,10 @@ Tu run tests, use the following command:
 
 * **[NEXT]** (changes on master that have not been released yet):
 
+  * Nothing yet ;)
+
+* **v2.1.0:**
+
   * feat: Allow to set custom attributes on the `<iframe>` HTML element (@flozz, #60)
 
 * **v2.0.0:**
