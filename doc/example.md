@@ -75,9 +75,10 @@ var obsidianApp = require("obsidian-api/lib/integration");
 
 // Start the application
 var app = obsidianApp({
-    htmlNode: "#integration-div",              // Query selector or HTMLElement that will be the parent of the iframe
-    appUrl: "http://example.com/",             // The URL of the application
-    config: {}                                 // Optional config that will be passed to the application
+    htmlNode: "#integration-div",   // Query selector or HTMLElement that will be the parent of the iframe
+    appUrl: "http://example.com/",  // The URL of the application
+    config: {},                     // Optional config that will be passed to the application
+    iframeAttributes: {}            // Optional attributes set on the <iframe> HTML element
 });
 
 
@@ -126,7 +127,8 @@ also use the pre-built version of the integration script available here:
     var app = obsidianApp({
         htmlNode: "#integration-div",
         appUrl: "http://example.com/",
-        config: {}
+        config: {},
+        iframeAttributes: {}
     });
 
     ...

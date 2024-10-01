@@ -12,7 +12,10 @@ describe("Integration", function() {
     before(function() {
         this.app = ObsidianApp({
             htmlNode: "#target",
-            appUrl: APP_URL
+            appUrl: APP_URL,
+            iframeAttributes: {
+                "custom-attr1": "foobar"
+            }
         });
     });
 
@@ -146,6 +149,11 @@ describe("Integration", function() {
                 expect(buff.toString("ascii", 1, 3)).to.equal("OO");
                 expect(buff.readUInt8).to.be.a("function");
             });
+    });
+
+    it("can set custom attributes on the iframe element", function() {
+        var iframeElement = document.querySelector("#target > iframe");
+        expect(iframeElement.getAttribute("custom-attr1")).to.equal("foobar");
     });
 
 });

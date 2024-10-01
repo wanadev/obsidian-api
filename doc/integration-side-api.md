@@ -157,8 +157,7 @@ api.myApiMethod("param1", "param2")
 
 ## Sending Configuration To The Application
 
-Finally, you can send a configuration object to the application when you
-declare it:
+You can send a configuration object to the application when you declare it:
 
 ```javascript
 var app = obsidianApp({
@@ -172,7 +171,34 @@ var app = obsidianApp({
 });
 ```
 
-## Complete Example:
+**IMPORTANT:** The configuration you set here will be serialized, encoded in
+Base64 and passed to the app in the URL. You SHOULD NOT use it to pass data to
+your application, only a small set of configurations that will be available
+before your app is completely started.
+
+
+## Setting Custom Attributes on the iframe HTML element
+
+You can add custom attributes to the generated `<iframe>` HTML element when you
+decare the application:
+
+```javascript
+var app = obsidianApp({
+    htmlNode: "#obsidian-app",
+    appUrl: "http://myapp.example.com/",
+    iframeAttributes: {
+        allow: "fullscreen; geolocation; camera; microphone",
+        allowfullscreen: "",
+        sandbox: "allow-same-origin allow-top-navigation allow-pointer-lock",
+        referrerpolicy: "origin",
+        "custom-attr": "foobar",
+        // ...
+    }
+});
+```
+
+
+## Complete Example
 
 You can find a more complete example that contains both application-side and
 integration-side code [here](./example.html).
