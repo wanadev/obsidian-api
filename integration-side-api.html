@@ -135,7 +135,12 @@
             </li>
         
             <li>
-                <a href="#complete-example">Complete Example:</a>
+                <a href="#setting-custom-attributes-on-the-iframe-html-element">Setting Custom Attributes on the iframe HTML element</a>
+                
+            </li>
+        
+            <li>
+                <a href="#complete-example">Complete Example</a>
                 
             </li>
         
@@ -264,8 +269,7 @@ method&#39;s result and to handle errors:</p>
 
 
 <h2 id="sending-configuration-to-the-application">Sending Configuration To The Application</h2>
-<p>Finally, you can send a configuration object to the application when you
-declare it:</p>
+<p>You can send a configuration object to the application when you declare it:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> app = obsidianApp({
     <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#obsidian-app"</span>,
     <span class="hljs-attr">appUrl</span>: <span class="hljs-string">"http://myapp.example.com/"</span>,
@@ -276,7 +280,28 @@ declare it:</p>
     }
 });</code></pre>
 
-<h2 id="complete-example">Complete Example:</h2>
+<p><strong>IMPORTANT:</strong> The configuration you set here will be serialized, encoded in
+Base64 and passed to the app in the URL. You SHOULD NOT use it to pass data to
+your application, only a small set of configurations that will be available
+before your app is completely started.</p>
+<h2 id="setting-custom-attributes-on-the-iframe-html-element">Setting Custom Attributes on the iframe HTML element</h2>
+<p>You can add custom attributes to the generated <code>&lt;iframe&gt;</code> HTML element when you
+decare the application:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> app = obsidianApp({
+    <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#obsidian-app"</span>,
+    <span class="hljs-attr">appUrl</span>: <span class="hljs-string">"http://myapp.example.com/"</span>,
+    <span class="hljs-attr">iframeAttributes</span>: {
+        <span class="hljs-attr">allow</span>: <span class="hljs-string">"fullscreen; geolocation; camera; microphone"</span>,
+        <span class="hljs-attr">allowfullscreen</span>: <span class="hljs-string">""</span>,
+        <span class="hljs-attr">sandbox</span>: <span class="hljs-string">"allow-same-origin allow-top-navigation allow-pointer-lock"</span>,
+        <span class="hljs-attr">referrerpolicy</span>: <span class="hljs-string">"origin"</span>,
+        <span class="hljs-string">"custom-attr"</span>: <span class="hljs-string">"foobar"</span>,
+        <span class="hljs-comment">// ...</span>
+    }
+});</code></pre>
+
+
+<h2 id="complete-example">Complete Example</h2>
 <p>You can find a more complete example that contains both application-side and
 integration-side code <a href="./example.html">here</a>.</p>
 

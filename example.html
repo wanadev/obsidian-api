@@ -164,9 +164,10 @@ api.sendEvent(<span class="hljs-string">"eventName"</span>, <span class="hljs-st
 
 <span class="hljs-comment">// Start the application</span>
 <span class="hljs-keyword">var</span> app = obsidianApp({
-    <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#integration-div"</span>,              <span class="hljs-comment">// Query selector or HTMLElement that will be the parent of the iframe</span>
-    appUrl: <span class="hljs-string">"http://example.com/"</span>,             <span class="hljs-comment">// The URL of the application</span>
-    config: {}                                 <span class="hljs-comment">// Optional config that will be passed to the application</span>
+    <span class="hljs-attr">htmlNode</span>: <span class="hljs-string">"#integration-div"</span>,   <span class="hljs-comment">// Query selector or HTMLElement that will be the parent of the iframe</span>
+    appUrl: <span class="hljs-string">"http://example.com/"</span>,  <span class="hljs-comment">// The URL of the application</span>
+    config: {},                     <span class="hljs-comment">// Optional config that will be passed to the application</span>
+    iframeAttributes: {}            <span class="hljs-comment">// Optional attributes set on the &lt;iframe&gt; HTML element</span>
 });
 
 
@@ -212,7 +213,8 @@ also use the pre-built version of the integration script available here:</p>
     <span class="hljs-keyword">var</span> app = obsidianApp({
         htmlNode: <span class="hljs-string">"#integration-div"</span>,
         appUrl: <span class="hljs-string">"http://example.com/"</span>,
-        config: {}
+        config: {},
+        iframeAttributes: {}
     });
 
     ...
