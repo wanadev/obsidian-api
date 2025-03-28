@@ -82,6 +82,10 @@ Tu run tests, use the following command:
 
   * Nothing yet ;)
 
+* **v2.2.0:**
+
+  * feat: Replaced the deprecated Q library by native Promises (@jbghoul, #73, #74)
+
 * **v2.1.0:**
 
   * feat: Allow to set custom attributes on the `<iframe>` HTML element (@flozz, #60)
