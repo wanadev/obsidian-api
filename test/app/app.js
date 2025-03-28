@@ -1,6 +1,5 @@
 "use strict";
 
-var Q = require("q");
 var ObsidianApi = require("../../lib/ObsidianApi.js");
 
 var Api = ObsidianApi.$extend({
@@ -35,7 +34,7 @@ var Api = ObsidianApi.$extend({
 
     addAsyncPromiseOk: function(a, b) {
         "@api";
-        return Q.Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             setTimeout(function() {
                 resolve(a + b);
             }, 1);
@@ -44,7 +43,7 @@ var Api = ObsidianApi.$extend({
 
     addAsyncPromiseError: function(a, b) {
         "@api";
-        return Q.Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             setTimeout(function() {
                 reject(new Error("TestError"));
             }, 1);
