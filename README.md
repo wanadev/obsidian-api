@@ -80,6 +80,10 @@ Tu run tests, use the following command:
 
 * **[NEXT]** (changes on master that have not been released yet):
 
+  * Nothing yet ;)
+
+* **v2.3.0:**
+
   * feat: Replaced the `global` keyword by `globalThis` (@flozz, #75)
 
 * **v2.2.0:**

@@ -128,7 +128,7 @@ var ObsidianApi = Class.$extend({
 module.exports = ObsidianApi;
 
 },{"./helpers.js":2,"abitbol":4,"lodash/isFunction":15}],2:[function(require,module,exports){
-(function (global,Buffer){(function (){
+(function (Buffer){(function (){
 "use strict";
 
 var helpers = {
@@ -240,7 +240,7 @@ var helpers = {
                 // tranferable: TypedArray
                 } else {
                     for (var t = 0 ; t < typedArray.length ; t++) {
-                        if (args[i] instanceof global[typedArray[t]]) {
+                        if (args[i] instanceof globalThis[typedArray[t]]) {
                             transferable.push(args[i].buffer);
                             break;
                         }
@@ -298,7 +298,7 @@ var helpers = {
 
 module.exports = helpers;
 
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
+}).call(this)}).call(this,require("buffer").Buffer)
 },{"buffer":7}],3:[function(require,module,exports){
 "use strict";
 
