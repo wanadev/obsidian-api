@@ -15,6 +15,7 @@
     "it": false,
     "before": false,
     "Promise": false,
-    "ImageData": false
+    "ImageData": false,
+    "globalThis": false
   }
 }
