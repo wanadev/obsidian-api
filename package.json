@@ -29,7 +29,7 @@
         "grunt-contrib-uglify": "^5.2.2",
         "grunt-shell": "^4.0.0",
         "mocha": "^11.0.1",
-        "mocha-headless-chrome": "^4.0.0",
+        "mocha-headless-chrome": "^5.1.0",
         "pm2": "^6.0.5",
         "serve-static": "^2.2.0"
     },
